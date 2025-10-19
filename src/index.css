@@ -6,44 +6,56 @@
 :root {
   --radius: 0.625rem;
 
-  --background: #ecf2f9;
-  --foreground: #02162c;
+  /* Тёплая пастельная тема (светлая) */
+  --background: oklch(0.985 0.02 90); /* тёплый кремовый фон */
+  --foreground: oklch(0.23 0.04 70); /* тёмно-какао текст */
 
-  --card: #ffffff;
-  --card-foreground: #02162c;
+  --card: oklch(0.98 0.02 90); /* карточки почти как фон */
+  --card-foreground: oklch(0.23 0.04 70);
 
-  --popover: #ffffff;
-  --popover-foreground: #02162c;
+  --popover: oklch(0.99 0.015 90);
+  --popover-foreground: oklch(0.23 0.04 70);
 
-  --primary: #00aae6; /* базовый голубой */
-  --primary-foreground: #ffffff;
+  --primary: oklch(0.82 0.12 70); /* абрикос/персик (акцент) */
+  --primary-foreground: oklch(
+    0.18 0.03 70
+  ); /* читаемый тёмный текст на primary */
 
-  --primary-deep: #005aaa; /* глубокий синий */
-  --primary-soft: #56ccf2; /* светлый голубой */
-  --primary-extra-light: #c7f1ff;
+  /* Доп. теплая гамма */
+  --primary-deep: #c45a36; /* терракота для hover/active */
+  --primary-soft: #ffd9bf; /* очень мягкий персик */
+  --primary-extra-light: #fff1e7;
 
-  --secondary: #ecf2f9; /* светло-серый фон */
-  --secondary-foreground: #02162c;
+  --secondary: oklch(0.965 0.015 95); /* светлый крем для вторичных блоков */
+  --secondary-foreground: oklch(0.32 0.04 70);
 
-  --muted: #ecf2f9;
-  --muted-foreground: #353535; /* графитовый */
+  --muted: oklch(0.95 0.015 95); /* мягкие разделители/чипсы */
+  --muted-foreground: oklch(0.45 0.03 70); /* приглушённый коричневый */
 
-  --accent: #c7f1ff;
-  --accent-foreground: #02162c;
+  --accent: oklch(0.9 0.05 145); /* шалфей (зелёный, но пастельный) */
+  --accent-foreground: oklch(0.25 0.03 70);
 
-  --destructive: #d92d20;
-  --border: #c4c4c4;
-  --input: #c4c4c4;
-  --ring: #2f80ed;
+  --destructive: oklch(0.62 0.21 25); /* тёплый красный (не кричащий) */
+  --border: oklch(0.92 0.01 95);
+  --input: oklch(0.94 0.012 95);
+  --ring: oklch(0.8 0.05 145); /* светлый шалфей для focus */
 
-  --sidebar: #f7fafc;
-  --sidebar-foreground: #02162c;
-  --sidebar-primary: #ecf2f9;
-  --sidebar-primary-foreground: #02162c;
-  --sidebar-accent: #edf3ff;
-  --sidebar-accent-foreground: #02162c;
-  --sidebar-border: #e0e6ed;
-  --sidebar-ring: #00aae6;
+  /* Sidebar в тёплой теме */
+  --sidebar: oklch(0.985 0.02 90);
+  --sidebar-foreground: oklch(0.23 0.04 70);
+  --sidebar-primary: oklch(0.82 0.12 70);
+  --sidebar-primary-foreground: oklch(0.18 0.03 70);
+  --sidebar-accent: oklch(0.9 0.05 145);
+  --sidebar-accent-foreground: oklch(0.25 0.03 70);
+  --sidebar-border: oklch(0.92 0.01 95);
+  --sidebar-ring: oklch(0.8 0.05 145);
+
+  /* Набор для графиков — тёплая натуральная палитра */
+  --chart-1: oklch(0.72 0.14 40); /* терракота */
+  --chart-2: oklch(0.78 0.08 145); /* шалфей */
+  --chart-3: oklch(0.7 0.06 310); /* слива (очень мягкая) */
+  --chart-4: oklch(0.85 0.12 90); /* горчица пастельная */
+  --chart-5: oklch(0.8 0.09 200); /* небесный приглушённый */
 }
 
 @theme inline {
@@ -85,44 +97,51 @@
 }
 
 .dark {
-  --background: #02162c;
-  --foreground: #ffffff;
+  /* Тёплая тёмная тема (шоколадный фон + тёплый текст) */
+  --background: oklch(0.23 0.03 70); /* тёмный какао */
+  --foreground: oklch(0.97 0.02 95); /* почти кремовый текст */
 
-  --card: #102030;
-  --card-foreground: #ffffff;
+  --card: oklch(0.26 0.03 70);
+  --card-foreground: oklch(0.97 0.02 95);
 
-  --popover: #102030;
-  --popover-foreground: #ffffff;
+  --popover: oklch(0.26 0.03 70);
+  --popover-foreground: oklch(0.97 0.02 95);
 
-  --primary: #00aae6;
-  --primary-foreground: #ffffff;
+  --primary: oklch(0.75 0.1 70); /* приглушённый персик, светится на тёмном */
+  --primary-foreground: oklch(0.2 0.03 70);
 
-  --primary-deep: #005aaa;
-  --primary-soft: #56ccf2;
-  --primary-extra-light: #c7f1ff;
+  --primary-deep: #e06b45;
+  --primary-soft: #ffd0b5;
+  --primary-extra-light: #ffe6d7;
 
-  --secondary: #1f2a37;
-  --secondary-foreground: #ffffff;
+  --secondary: oklch(0.3 0.02 80); /* тёплый тёмный крем */
+  --secondary-foreground: oklch(0.95 0.02 95);
 
-  --muted: #151515;
-  --muted-foreground: #a0aec0;
+  --muted: oklch(0.3 0.02 80);
+  --muted-foreground: oklch(0.78 0.03 95);
 
-  --accent: #353535;
-  --accent-foreground: #ffffff;
+  --accent: oklch(0.7 0.06 145); /* тёмный шалфей */
+  --accent-foreground: oklch(0.96 0.02 95);
 
-  --destructive: #f97066;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: #2f80ed;
+  --destructive: oklch(0.58 0.21 25);
+  --border: oklch(0.35 0.02 80 / 60%);
+  --input: oklch(0.32 0.02 80 / 55%);
+  --ring: oklch(0.7 0.06 145);
 
-  --sidebar: #02162c;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #0f3b5b;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1f2a37;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #00aae6;
+  --sidebar: oklch(0.26 0.03 70);
+  --sidebar-foreground: oklch(0.97 0.02 95);
+  --sidebar-primary: oklch(0.75 0.1 70);
+  --sidebar-primary-foreground: oklch(0.2 0.03 70);
+  --sidebar-accent: oklch(0.7 0.06 145);
+  --sidebar-accent-foreground: oklch(0.96 0.02 95);
+  --sidebar-border: oklch(0.35 0.02 80 / 60%);
+  --sidebar-ring: oklch(0.7 0.06 145);
+
+  --chart-1: oklch(0.7 0.12 35); /* коралловый/терракота светлее */
+  --chart-2: oklch(0.68 0.08 145); /* шалфей */
+  --chart-3: oklch(0.62 0.07 300); /* слива */
+  --chart-4: oklch(0.78 0.12 90); /* горчица */
+  --chart-5: oklch(0.72 0.09 200); /* небесный */
 }
 
 @layer base {

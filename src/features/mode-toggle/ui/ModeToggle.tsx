@@ -1,12 +1,31 @@
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, LogOut } from "lucide-react";
 import { useTheme } from "@/shared/configs/theme";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
+import { ROUTES } from "@/shared/configs/routes";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
+  const navigate = useNavigate();
+
+  const { pathname } = useLocation();
+  const isAuthPage = pathname === ROUTES.LOGIN || pathname === ROUTES.REGISTER;
 
   return (
     <div className="flex justify-end items-center gap-4">
+      {!isAuthPage && (
+        <>
+          <Button
+            variant="outline"
+            size="icon"
+            className="dark:text-white text-black"
+            onClick={() => navigate(ROUTES.LOGIN)}
+          >
+            <LogOut className="h-[1.2rem] w-[1.2rem]" />
+            <span className="sr-only">Выход</span>
+          </Button>
+        </>
+      )}
       <Button
         variant="outline"
         size="icon"

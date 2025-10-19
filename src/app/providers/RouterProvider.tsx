@@ -1,6 +1,7 @@
 import { HomePage } from "@/pages/HomePage/ui";
 import { MainLayout } from "../layouts/MainLayout";
 import { LoginPage } from "@/pages/LoginPage";
+import { RegisterPage } from "@/pages/RegisterPage";
 import { NotFoundPage } from "@/pages/NotFoundPage/ui";
 import { ROUTES } from "@/shared/configs/routes";
 import {
@@ -11,6 +12,7 @@ import {
 
 export const router = createBrowserRouter([
   { path: ROUTES.LOGIN, element: <LoginPage /> },
+  { path: ROUTES.REGISTER, element: <RegisterPage /> },
 
   {
     element: <MainLayout />,
