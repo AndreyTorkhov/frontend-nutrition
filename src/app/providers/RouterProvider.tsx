@@ -8,7 +8,7 @@ import {
   createBrowserRouter,
   RouterProvider as ReactRouterDomProvider,
 } from "react-router-dom";
-// import { ProtectedRoute } from "../lib";
+import { ProtectedRoute } from "../lib";
 
 export const router = createBrowserRouter([
   { path: ROUTES.LOGIN, element: <LoginPage /> },
@@ -20,7 +20,11 @@ export const router = createBrowserRouter([
       // ВАЖНО: профиль как оболочка + дочерний роут-модалка
       {
         path: ROUTES.HOME,
-        element: <HomePage />,
+        element: (
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        ),
         children: [{ index: true, element: null }],
       },
     ],
