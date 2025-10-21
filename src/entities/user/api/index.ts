@@ -12,6 +12,7 @@ const getMe = () => $api.get<UserResponse>("/users/me");
 const updateMe = (body: UpdateUserPayload) =>
   $api.patch<UserResponse>("/users/me", body);
 
-const deleteMe = () => $api.delete<UserResponse>("/users/me");
+const deleteMe = () =>
+  $api.request<void>({ url: "/users/me", method: "DELETE" });
 
 export const UsersService = { getUsers, getMe, updateMe, deleteMe };

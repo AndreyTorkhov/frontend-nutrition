@@ -1,4 +1,6 @@
-import { HomePage } from "@/pages/HomePage/ui";
+import { HomePage } from "@/pages/HomePage";
+import { ProfilePage } from "@/pages/ProfilePage";
+import { UsersPage } from "@/pages/UsersPage";
 import { MainLayout } from "../layouts/MainLayout";
 import { LoginPage } from "@/pages/LoginPage";
 import { RegisterPage } from "@/pages/RegisterPage";
@@ -17,12 +19,29 @@ export const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      // ВАЖНО: профиль как оболочка + дочерний роут-модалка
       {
         path: ROUTES.HOME,
         element: (
           <ProtectedRoute>
             <HomePage />
+          </ProtectedRoute>
+        ),
+        children: [{ index: true, element: null }],
+      },
+      {
+        path: ROUTES.PROFILE,
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
+        children: [{ index: true, element: null }],
+      },
+      {
+        path: ROUTES.USERS,
+        element: (
+          <ProtectedRoute>
+            <UsersPage />
           </ProtectedRoute>
         ),
         children: [{ index: true, element: null }],

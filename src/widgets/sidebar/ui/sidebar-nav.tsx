@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { Home } from "lucide-react";
+import { Home, UserPen, Users } from "lucide-react";
 import { ROUTES } from "@/shared/configs/routes";
 
-const LINKS = [{ to: ROUTES.HOME, label: "Главная", icon: Home }];
+const LINKS = [
+  { to: ROUTES.HOME, label: "Главная", icon: Home },
+  { to: ROUTES.PROFILE, label: "Профиль", icon: UserPen },
+  { to: ROUTES.USERS, label: "Пользователи", icon: Users },
+];
 
 interface SidebarNavProps {
   onItemClick?: () => void;
