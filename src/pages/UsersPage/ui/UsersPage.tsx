@@ -61,7 +61,7 @@ export const UsersPage = () => {
       </div>
 
       <div className="flex-1 px-4 md:pb-6 mb-24 mt-4">
-        <Card className="p-0 shadow-sm">
+        <Card className="p-0 shadow-sm mb-2">
           {listError ? (
             <div className="p-4 text-sm text-destructive">{listError}</div>
           ) : (

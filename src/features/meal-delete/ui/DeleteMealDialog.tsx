@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,20 +13,25 @@ import {
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Loader2, Trash2 } from "lucide-react";
-import { useUserStore } from "@/entities/user";
-import { ROUTES } from "@/shared/configs/routes";
+import { useMealsStore } from "@/entities/meal";
 
 interface Props {
-  redirectTo?: string;
+  mealId: number;
+  mealName?: string;
+  triggerClassName?: string;
+  onDeleted?: () => void;
 }
 
-export const DeleteAccountDialog = ({
-  redirectTo = ROUTES.REGISTER,
+export const DeleteMealDialog = ({
+  mealId,
+  mealName,
+  triggerClassName,
+  onDeleted,
 }: Props) => {
   const [open, setOpen] = useState(false);
   const [confirmText, setConfirmText] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const deleteMeal = useMealsStore((s) => s.deleteMeal);
 
   const disabled = confirmText !== "DELETE" || loading;
 
@@ -35,58 +39,48 @@ export const DeleteAccountDialog = ({
     if (disabled) return;
     setLoading(true);
     try {
-      await fetch(`${import.meta.env.VITE_BASE_URL}/users/me`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-
-      useUserStore.getState().clear();
+      await deleteMeal(mealId);
       setOpen(false);
-      navigate(redirectTo);
-    } catch (e) {
-      console.error("Ошибка при удалении аккаунта", e);
+      onDeleted?.();
     } finally {
       setLoading(false);
       setConfirmText("");
     }
   };
+
   return (
     <AlertDialog open={open} onOpenChange={(v) => !loading && setOpen(v)}>
       <AlertDialogTrigger asChild>
         <Button
+          size="sm"
           variant="destructive"
-          className="gap-2 sm:w-auto w-full"
+          className={triggerClassName ?? "gap-2 w-full sm:w-auto"}
           onClick={() => setOpen(true)}
         >
           <Trash2 className="h-4 w-4" />
-          Удалить аккаунт
         </Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent className="w-full max-w-full h-dvh sm:h-auto sm:max-w-[440px] sm:rounded-xl rounded-none flex flex-col">
         <div className="flex-1 overflow-y-auto px-1">
           <AlertDialogHeader className="space-y-3 px-3 pt-3">
-            <AlertDialogTitle>Подтвердите удаление аккаунта</AlertDialogTitle>
-            <AlertDialogDescription className="space-y-2 px-0.5">
+            <AlertDialogTitle>Удалить блюдо?</AlertDialogTitle>
+            <AlertDialogDescription className="space-y-2">
               <p>
-                Это действие{" "}
-                <span className="font-medium text-foreground">необратимо</span>.
+                Действие необратимо. Будет удалено блюдо
+                {mealName ? ` «${mealName}»` : ""}.
               </p>
               <p className="text-muted-foreground">
-                Введите{" "}
-                <span className="font-mono px-1 py-0.5 rounded bg-muted text-foreground">
-                  DELETE
-                </span>{" "}
-                для подтверждения.
+                Для подтверждения введите{" "}
+                <span className="font-mono bg-muted px-1 rounded">DELETE</span>.
               </p>
-              <div className="pt-1">
-                <Input
-                  autoFocus
-                  placeholder="Введите: DELETE"
-                  value={confirmText}
-                  onChange={(e) => setConfirmText(e.target.value)}
-                />
-              </div>
+              <Input
+                autoFocus
+                placeholder="Введите: DELETE"
+                value={confirmText}
+                onChange={(e) => setConfirmText(e.target.value)}
+                className="mt-1"
+              />
             </AlertDialogDescription>
           </AlertDialogHeader>
         </div>
@@ -98,8 +92,8 @@ export const DeleteAccountDialog = ({
           <AlertDialogAction asChild>
             <Button
               variant="destructive"
-              onClick={onConfirm}
               disabled={disabled}
+              onClick={onConfirm}
               className="w-full sm:w-auto gap-2"
             >
               {loading && <Loader2 className="h-4 w-4 animate-spin" />}
