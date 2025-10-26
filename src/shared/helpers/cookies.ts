@@ -17,3 +17,10 @@ export function getAccessToken(): string | null {
 export function clearAccessToken() {
   document.cookie = `${ACCESS_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
 }
+
+export function getAccessFromCookie() {
+  return document.cookie
+    .split("; ")
+    .find((v) => v.startsWith("access="))
+    ?.split("=")[1];
+}

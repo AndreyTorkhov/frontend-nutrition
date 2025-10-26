@@ -92,12 +92,11 @@ export const ProfileEditForm = ({ form, isLoading, onSubmit }: Props) => {
                     <Input
                       type="number"
                       inputMode="numeric"
-                      value={field.value ?? ""}
-                      onChange={(e) =>
-                        field.onChange(
-                          e.target.value === "" ? undefined : +e.target.value,
-                        )
-                      }
+                      value={field.value === 0 ? "" : field.value}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        field.onChange(val === "" ? 0 : parseFloat(val));
+                      }}
                     />
                   </FormControl>
                   <FormMessage />
@@ -174,14 +173,11 @@ export const ProfileEditForm = ({ form, isLoading, onSubmit }: Props) => {
                       type="number"
                       step="0.1"
                       inputMode="decimal"
-                      value={field.value ?? ""}
-                      onChange={(e) =>
-                        field.onChange(
-                          e.target.value === ""
-                            ? undefined
-                            : parseFloat(e.target.value),
-                        )
-                      }
+                      value={field.value === 0 ? "" : field.value}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        field.onChange(val === "" ? 0 : parseFloat(val));
+                      }}
                     />
                   </FormControl>
                   <FormMessage />
@@ -200,14 +196,11 @@ export const ProfileEditForm = ({ form, isLoading, onSubmit }: Props) => {
                       type="number"
                       step="0.1"
                       inputMode="decimal"
-                      value={field.value ?? ""}
-                      onChange={(e) =>
-                        field.onChange(
-                          e.target.value === ""
-                            ? undefined
-                            : parseFloat(e.target.value),
-                        )
-                      }
+                      value={field.value === 0 ? "" : field.value}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        field.onChange(val === "" ? 0 : parseFloat(val));
+                      }}
                     />
                   </FormControl>
                   <FormMessage />
@@ -226,14 +219,11 @@ export const ProfileEditForm = ({ form, isLoading, onSubmit }: Props) => {
                       type="number"
                       step="0.1"
                       inputMode="decimal"
-                      value={field.value ?? ""}
-                      onChange={(e) =>
-                        field.onChange(
-                          e.target.value === ""
-                            ? undefined
-                            : parseFloat(e.target.value),
-                        )
-                      }
+                      value={field.value === 0 ? "" : field.value}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        field.onChange(val === "" ? 0 : parseFloat(val));
+                      }}
                     />
                   </FormControl>
                   <FormMessage />

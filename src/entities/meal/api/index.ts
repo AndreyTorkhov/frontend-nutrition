@@ -7,6 +7,8 @@ import type {
   MealsStatisticsResponse,
   StatsGroupBy,
 } from "../types";
+import { getAccessFromCookie } from "@/shared/helpers/cookies";
+import { addDays } from "../helpers";
 
 const getMyMeals = () => $api.get<MealsListResponse>("/meals/me");
 
@@ -20,7 +22,19 @@ const updateMyMeal = (id: number, body: UpdateMealPayload) =>
 Сразу не удалилось
  */
 const deleteMyMeal = async (id: number) => {
-  $api.delete<MealResponse>(`/meals/me/${id}`);
+  const token = getAccessFromCookie();
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/meals/me/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      ...(token
+        ? { Authorization: `Bearer ${decodeURIComponent(token)}` }
+        : {}),
+    },
+    credentials: "include",
+  });
+  if (!res.ok) throw new Error(`DELETE failed: ${res.status}`);
+  return res.json().catch(() => undefined);
 };
 
 const getMyMealsStatistics = (p: {
@@ -28,9 +42,10 @@ const getMyMealsStatistics = (p: {
   endDate: string;
   groupBy?: StatsGroupBy;
 }) => {
+  const endExclusive = addDays(p.endDate, 2);
   const params = new URLSearchParams({
     startDate: p.startDate,
-    endDate: p.endDate,
+    endDate: endExclusive,
     ...(p.groupBy ? { groupBy: p.groupBy } : {}),
   });
   return $api.get<MealsStatisticsResponse>(

@@ -129,9 +129,11 @@ export const RegisterForm = ({ form, isLoading, onSubmit }: Props) => {
                         type="number"
                         placeholder="Введите возраст"
                         {...field}
-                        onChange={(e) =>
-                          field.onChange(parseInt(e.target.value, 10) || 0)
-                        }
+                        value={field.value === 0 ? "" : field.value}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          field.onChange(val === "" ? 0 : parseFloat(val));
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -179,9 +181,11 @@ export const RegisterForm = ({ form, isLoading, onSubmit }: Props) => {
                         step="0.1"
                         placeholder="Введите рост"
                         {...field}
-                        onChange={(e) =>
-                          field.onChange(parseFloat(e.target.value) || 0)
-                        }
+                        value={field.value === 0 ? "" : field.value}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          field.onChange(val === "" ? 0 : parseFloat(val));
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -201,9 +205,11 @@ export const RegisterForm = ({ form, isLoading, onSubmit }: Props) => {
                         step="0.1"
                         placeholder="Введите вес"
                         {...field}
-                        onChange={(e) =>
-                          field.onChange(parseFloat(e.target.value) || 0)
-                        }
+                        value={field.value === 0 ? "" : field.value}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          field.onChange(val === "" ? 0 : parseFloat(val));
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -223,9 +229,11 @@ export const RegisterForm = ({ form, isLoading, onSubmit }: Props) => {
                         step="0.1"
                         placeholder="Введите целевой вес"
                         {...field}
-                        onChange={(e) =>
-                          field.onChange(parseFloat(e.target.value) || 0)
-                        }
+                        value={field.value === 0 ? "" : field.value}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          field.onChange(val === "" ? 0 : parseFloat(val));
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
