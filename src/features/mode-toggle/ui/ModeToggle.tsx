@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Moon, Sun, LogOut } from "lucide-react";
+import { Moon, Sun, LogOut, Loader2 } from "lucide-react";
 import { useTheme } from "@/shared/configs/theme";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthService } from "@/entities/auth";
 import { Button } from "@/shared/ui/button";
 import { ROUTES } from "@/shared/configs/routes";
-import { Loader2 } from "lucide-react";
+import { PhotoInput } from "@/features/photo-input/ui/PhotoInput";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
@@ -19,6 +19,11 @@ export function ModeToggle() {
     <div className="flex justify-end items-center gap-4">
       {!isAuthPage && (
         <>
+          <PhotoInput
+            onUploaded={(resp) => {
+              console.log("Загружено фото:", resp);
+            }}
+          />
           <Button
             variant="outline"
             size="icon"
@@ -43,6 +48,7 @@ export function ModeToggle() {
           </Button>
         </>
       )}
+
       <Button
         variant="outline"
         size="icon"
